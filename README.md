@@ -1,8 +1,8 @@
 # � Terosica AI - Advanced Security Intelligence Platform
 
-**Version:** 2.0.0  
-**Status:** Production Ready | Enterprise Grade  
-**License:** MIT | Commercial Available  
+**Version:** 1.0.0  
+**Status:** Deactivated (API KEY REMOVED)
+**License:** Apache 2.0 | Commercial Available  
 **Author:** Terosica Development Team
 
 ## Overview
@@ -717,7 +717,7 @@ Built with security, simplicity, and style.
 
 ## 📅 Changelog
 
-### v1.0.0 (April 1, 2026)
+### v1.0.0 (April 3, 2026)
 - ✨ Initial release
 - 📧 Phishing email detection engine
 - 🔐 Password strength analyzer
@@ -727,6 +727,8 @@ Built with security, simplicity, and style.
 
 ---
 
-**Last Updated:** April 1, 2026  
+**Last Updated:** April 3, 2026  
 **Maintained By:** Terosica AI Team  
-**Status:** API Key Deactivated
+**Status:** Deactivated
+
+Can be reactivated by purchasing an AI-API Key and integrating it with the Backend.
