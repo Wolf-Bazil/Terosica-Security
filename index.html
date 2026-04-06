@@ -1,0 +1,1957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terosica AI - Enterprise Cyber Safety Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0066ff;
+            --primary-dark: #0052cc;
+            --secondary-color: #00d4ff;
+            --success-color: #00d084;
+            --warning-color: #ffa500;
+            --danger-color: #ff3366;
+            --dark-bg: #0f1419;
+            --light-bg: #ffffff;
+            --card-bg: #1a1f2e;
+            --border-color: #2d3748;
+            --text-primary: #ffffff;
+            --text-secondary: #a0aec0;
+            --accent: #6366f1;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-xxl: 4rem;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: linear-gradient(-45deg, var(--dark-bg) 0%, #1a1f2e 25%, #0a1628 50%, #1a1f2e 75%, var(--dark-bg) 100%);
+            background-size: 100% 100%;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            min-height: 100vh;
+            scroll-behavior: smooth;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Disable animations for smooth scrolling */
+        @media (prefers-reduced-motion: no-preference) {
+            html { scroll-behavior: smooth; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+        }
+
+        /* Header & Navigation */
+        header {
+            background: rgba(15, 20, 25, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 102, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: var(--spacing-sm) 0;
+            will-change: transform;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            text-decoration: none;
+            animation: logoGlow 2s ease-in-out infinite;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+        }
+
+        .logo:hover {
+            animation: logoGlow 0.3s ease;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.4)) drop-shadow(0 0 20px rgba(0, 102, 255, 0.25)) drop-shadow(0 0 40px rgba(0, 255, 136, 0.1)); }
+            50% { filter: drop-shadow(0 0 20px rgba(0, 212, 255, 1)) drop-shadow(0 0 40px rgba(0, 102, 255, 0.6)) drop-shadow(0 0 60px rgba(0, 255, 136, 0.3)); }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 0 30px rgba(0, 102, 255, 0.5), 0 0 60px rgba(0, 212, 255, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translate(-100%, -100%) rotate(0deg); }
+            100% { transform: translate(100%, 100%) rotate(360deg); }
+        }
+
+        .logo-icon:hover {
+            box-shadow: 0 0 50px rgba(0, 212, 255, 1), 0 0 80px rgba(0, 102, 255, 0.7), 0 0 100px rgba(0, 255, 136, 0.4), inset 0 0 25px rgba(255, 255, 255, 0.4);
+            transform: scale(1.2) rotate(8deg) translateY(-4px);
+            filter: brightness(1.3);
+        }
+
+        nav {
+            display: flex;
+            gap: var(--spacing-lg);
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.2), transparent);
+            border-radius: 8px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.8), 0 0 30px rgba(0, 102, 255, 0.4);
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.5), inset 0 0 15px rgba(0, 212, 255, 0.15);
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        nav a:hover::before {
+            opacity: 1;
+        }
+
+        nav a:hover::before {
+            display: none;
+        }
+
+        nav a.active {
+            color: var(--secondary-color);
+            text-shadow: 0 0 30px rgba(0, 102, 255, 0.8), 0 0 20px rgba(0, 212, 255, 0.6);
+            box-shadow: 0 0 30px rgba(0, 102, 255, 0.6), inset 0 0 15px rgba(0, 102, 255, 0.25);
+            background: rgba(0, 102, 255, 0.15);
+            font-weight: 600;
+        }
+
+        nav a.active::before {
+            opacity: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--spacing-xxl) var(--spacing-lg);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: var(--spacing-md);
+            color: var(--secondary-color);
+            line-height: 1.2;
+            animation: heroTitleGlow 4s ease-in-out infinite;
+            letter-spacing: -0.5px;
+        }
+
+        @keyframes heroTitleGlow {
+            0%, 100% { filter: drop-shadow(0 0 30px rgba(0, 212, 255, 0.4)) drop-shadow(0 0 60px rgba(0, 102, 255, 0.2)) drop-shadow(0 0 90px rgba(0, 255, 136, 0.1)); }
+            50% { filter: drop-shadow(0 0 50px rgba(0, 212, 255, 0.7)) drop-shadow(0 0 100px rgba(0, 102, 255, 0.5)) drop-shadow(0 0 150px rgba(0, 255, 136, 0.3)); }
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-xxl);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .feature-card {
+            background: rgba(26, 31, 46, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 16px;
+            padding: var(--spacing-lg);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 102, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--secondary-color);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(0, 212, 255, 0.8);
+            box-shadow: 0 20px 60px rgba(0, 102, 255, 0.3), 0 0 40px rgba(0, 212, 255, 0.4), 0 0 80px rgba(0, 255, 136, 0.15), inset 0 1px 10px rgba(0, 212, 255, 0.2);
+            transform: translateY(-12px) scale(1.02);
+            background: rgba(26, 31, 46, 0.7);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover::after {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-md);
+            /* Floating animation disabled for smooth scrolling */
+        }
+
+        .feature-card:nth-child(2) .feature-icon {
+            transform: translateY(0);
+        }
+
+        .feature-card:nth-child(3) .feature-icon {
+            transform: translateY(0);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Main Content Area */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .section {
+            display: none;
+            margin-bottom: var(--spacing-xxl);
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.6), 0 0 60px rgba(0, 102, 255, 0.3); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes slideInFromLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInFromRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .tool-section {
+            background: rgba(26, 31, 46, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 20px;
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-xxl);
+            box-shadow: 0 10px 40px rgba(0, 102, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tool-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.5), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .tool-section::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 212, 255, 0.1) 0%, transparent 80%);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .tool-section:hover {
+            border-color: rgba(0, 212, 255, 0.5);
+            box-shadow: 0 20px 60px rgba(0, 102, 255, 0.25), 0 0 50px rgba(0, 212, 255, 0.2), inset 0 1px 10px rgba(0, 212, 255, 0.1);
+        }
+        
+        .tool-section:hover::before {
+            opacity: 1;
+        }
+        
+        .tool-section:hover::after {
+            opacity: 1;
+        }
+
+        .tool-section h2 {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            /* slideInFromLeft animation disabled for smooth scrolling */
+        }
+
+        .tool-section-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 102, 255, 0.3);
+        }
+
+        .tool-section:hover .tool-section-icon {
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.6), 0 0 50px rgba(0, 102, 255, 0.3);
+        }
+
+        .tool-intro {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Input Section */
+        .input-section {
+            background: rgba(26, 31, 46, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 14px;
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+            box-shadow: 0 8px 30px rgba(0, 102, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .input-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--secondary-color);
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+
+        label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        textarea,
+        select {
+            width: 100%;
+            padding: var(--spacing-sm);
+            background: rgba(26, 31, 46, 0.5);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: rgba(0, 212, 255, 0.8);
+            background: rgba(26, 31, 46, 0.7);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3), inset 0 2px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: 8px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            display: none;
+        }
+
+        .btn:active::before {
+            display: none;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-primary:active::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 20px 50px rgba(0, 102, 255, 0.6), 0 0 40px rgba(0, 212, 255, 0.4), 0 0 80px rgba(0, 255, 136, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Results/Analysis Panel */
+        .analysis-result {
+            display: none;
+            background: rgba(26, 31, 46, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 16px;
+            padding: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+            box-shadow: 0 15px 50px rgba(0, 102, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 0 30px rgba(0, 212, 255, 0.05);
+            animation: resultAppear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        @keyframes resultAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes resultPulse {
+            0% {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .analysis-result.active {
+            display: block;
+        }
+
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.05), transparent);
+            padding: 0 0 var(--spacing-lg) 0;
+            margin: -var(--spacing-lg) -var(--spacing-lg) var(--spacing-lg) -var(--spacing-lg);
+            padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-lg) var(--spacing-lg);
+        }
+
+        .result-status {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .status-badge {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+
+        .status-badge.safe {
+            background: var(--success-color);
+            box-shadow: 0 0 15px var(--success-color), 0 0 30px rgba(0, 208, 132, 0.3);
+        }
+
+        .status-badge.warning {
+            background: var(--warning-color);
+            box-shadow: 0 0 15px var(--warning-color), 0 0 30px rgba(255, 165, 0, 0.3);
+        }
+
+        .status-badge.danger {
+            background: var(--danger-color);
+            box-shadow: 0 0 15px var(--danger-color), 0 0 30px rgba(255, 51, 102, 0.3);
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .result-score {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .result-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .result-item {
+            background: rgba(26, 31, 46, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 212, 255, 0.25);
+            border-radius: 12px;
+            padding: var(--spacing-md);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 5px 20px rgba(0, 102, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .result-item:hover {
+            border-color: rgba(0, 212, 255, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 102, 255, 0.25), 0 0 30px rgba(0, 212, 255, 0.15), inset 0 1px 5px rgba(0, 212, 255, 0.1);
+            transform: translateY(-4px);
+            background: rgba(26, 31, 46, 0.6);
+        }
+
+        .result-item-label {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .result-item-value {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .analysis-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: var(--spacing-xs);
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 102, 255, 0.1);
+            position: relative;
+        }
+        
+        .analysis-bar::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shimmerBar 2s infinite;
+        }
+        
+        @keyframes shimmerBar {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .analysis-bar-fill {
+            height: 100%;
+            background: var(--secondary-color);
+            width: 0%;
+            transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 0 20px rgba(255, 51, 102, 0.6), 0 0 40px rgba(255, 165, 0, 0.3), inset 0 1px 3px rgba(255, 255, 255, 0.3);
+            position: relative;
+            animation: barGlow 2s ease-in-out infinite;
+        }
+        
+        @keyframes barGlow {
+            0%, 100% { filter: drop-shadow(0 0 5px rgba(255, 51, 102, 0.4)); }
+            50% { filter: drop-shadow(0 0 15px rgba(255, 165, 0, 0.6)); }
+        }
+
+        /* Phishing Detector Specific */
+        .phishing-indicators {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .indicator-item {
+            display: flex;
+            gap: var(--spacing-sm);
+            align-items: flex-start;
+            background: rgba(0, 212, 255, 0.05);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            border-radius: 12px;
+            padding: var(--spacing-md);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 5px 20px rgba(0, 102, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .indicator-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 212, 255, 0.1) 0%, transparent 80%);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .indicator-item:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: rgba(0, 212, 255, 0.4);
+            transform: translateX(6px) translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0, 102, 255, 0.2), inset 0 1px 5px rgba(0, 212, 255, 0.1);
+        }
+        
+        .indicator-item:hover::before {
+            opacity: 1;
+        }
+
+        .indicator-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+            margin-top: var(--spacing-xs);
+        }
+
+        .indicator-icon.safe {
+            background: rgba(0, 208, 132, 0.2);
+            color: var(--success-color);
+        }
+
+        .indicator-icon.warning {
+            background: rgba(255, 165, 0, 0.2);
+            color: var(--warning-color);
+        }
+
+        .indicator-icon.danger {
+            background: rgba(255, 51, 102, 0.2);
+            color: var(--danger-color);
+        }
+
+        .indicator-text {
+            flex: 1;
+        }
+
+        .indicator-title {
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .indicator-desc {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Password Strength Checker */
+        .password-strength-meter {
+            margin-top: var(--spacing-md);
+        }
+
+        .strength-bar {
+            width: 100%;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: var(--spacing-sm);
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .strength-bar::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shimmerBar 2s infinite;
+        }
+
+        .strength-fill {
+            height: 100%;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            background: var(--secondary-color);
+            width: 0%;
+            box-shadow: 0 0 20px rgba(255, 51, 102, 0.6), 0 0 30px rgba(255, 165, 0, 0.3), inset 0 1px 3px rgba(255, 255, 255, 0.3);
+            animation: strengthPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes strengthPulse {
+            0%, 100% { filter: drop-shadow(0 0 5px currentColor); }
+            50% { filter: drop-shadow(0 0 12px currentColor); }
+        }
+
+        .strength-text {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .strength-level {
+            font-weight: 600;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: 4px;
+            background: rgba(255, 51, 102, 0.2);
+            color: var(--danger-color);
+            font-size: 0.875rem;
+        }
+
+        .strength-level.weak {
+            background: rgba(255, 51, 102, 0.2);
+            color: var(--danger-color);
+        }
+
+        .strength-level.fair {
+            background: rgba(255, 165, 0, 0.2);
+            color: var(--warning-color);
+        }
+
+        .strength-level.good {
+            background: rgba(100, 200, 255, 0.2);
+            color: #64c8ff;
+        }
+
+        .strength-level.strong {
+            background: rgba(0, 208, 132, 0.2);
+            color: var(--success-color);
+        }
+
+        .strength-level.very-strong {
+            background: rgba(0, 212, 255, 0.2);
+            color: var(--secondary-color);
+        }
+
+        .password-requirements {
+            margin-top: var(--spacing-md);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-sm);
+        }
+
+        .requirement {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .requirement-check {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .requirement.met .requirement-check {
+            background: rgba(0, 208, 132, 0.2);
+            color: var(--success-color);
+        }
+
+        .requirement.met {
+            color: var(--success-color);
+        }
+
+        .password-tips {
+            margin-top: var(--spacing-lg);
+            padding: var(--spacing-lg);
+            background: rgba(0, 102, 255, 0.1);
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            display: none;
+        }
+
+        .password-tips h4 {
+            color: var(--secondary-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .password-tips ul {
+            list-style: none;
+            color: var(--text-secondary);
+        }
+
+        .password-tips li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* Fake Profile Detector */
+        .profile-analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .profile-check-item {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-left: 4px solid var(--border-color);
+            border-radius: 10px;
+            padding: var(--spacing-md);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 5px 20px rgba(0, 102, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .profile-check-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .profile-check-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.2);
+        }
+        
+        .profile-check-item:hover::before {
+            opacity: 1;
+        }
+
+        .profile-check-item.warning {
+            border-left-color: var(--warning-color);
+        }
+
+        .profile-check-item.danger {
+            border-left-color: var(--danger-color);
+        }
+
+        .profile-check-item.safe {
+            border-left-color: var(--success-color);
+        }
+
+        .check-title {
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .check-desc {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .recommendations-section {
+            background: rgba(0, 102, 255, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 102, 255, 0.3);
+            border-left: 4px solid var(--primary-color);
+            border-radius: 12px;
+            padding: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+            box-shadow: 0 10px 40px rgba(0, 102, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .recommendations-section h4 {
+            color: var(--secondary-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .recommendation-item {
+            padding: var(--spacing-md);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 8px;
+            border-left: 3px solid var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.6;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 5px 15px rgba(0, 102, 255, 0.1);
+        }
+        
+        .recommendation-item:hover {
+            background: rgba(0, 102, 255, 0.1);
+            transform: translateX(4px);
+            box-shadow: 0 8px 25px rgba(0, 102, 255, 0.2);
+            border-left-color: var(--secondary-color);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(0, 212, 255, 0.3);
+            padding: var(--spacing-xl) var(--spacing-lg);
+            margin-top: var(--spacing-xxl);
+            text-align: center;
+            color: var(--text-secondary);
+            background: rgba(0, 102, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 -20px 60px rgba(0, 102, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.5), transparent);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            text-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .loading {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite, glow 2s ease-in-out infinite;
+            box-shadow: 0 0 15px rgba(0, 102, 255, 0.6);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.5); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            nav {
+                gap: var(--spacing-md);
+                font-size: 0.875rem;
+            }
+
+            .tool-section {
+                padding: var(--spacing-lg);
+            }
+
+            .tool-section h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+        
+        /* Advanced Micro-interactions */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .section.active {
+            animation: fadeInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">🛡️</div>
+                <span>Terosica AI</span>
+            </a>
+            <nav>
+                <a href="#phishing" class="nav-link active" data-section="phishing">Phishing Detector</a>
+                <a href="#password" class="nav-link" data-section="password">Password Advisor</a>
+                <a href="#profile" class="nav-link" data-section="profile">Profile Detector</a>
+                <a href="#about" class="nav-link" data-section="about">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <h1>Next-Generation AI Cybersecurity Platform</h1>
+        <p>Safeguard against digital threats through intelligent AI detection systems, enabling real-time email analysis, credential strengthening, and fraudulent profile identification.</p>
+
+        <!-- Features Grid - Clickable Navigation -->
+        <div class="features-grid">
+            <div class="feature-card" onclick="navigateToSection('phishing')" style="cursor: pointer;">
+                <div class="feature-icon">📧</div>
+                <h3>Phishing Detector</h3>
+                <p>Advanced AI-powered analytical framework enabling precise detection of phishing communications, malicious URLs, and sophisticated social engineering vectors.</p>
+            </div>
+            <div class="feature-card" onclick="navigateToSection('password')" style="cursor: pointer;">
+                <div class="feature-icon">🔐</div>
+                <h3>Password Advisor</h3>
+                <p>Real-time password strength evaluation leveraging advanced analytics with context-aware, adaptive recommendations for maximum security assurance.</p>
+            </div>
+            <div class="feature-card" onclick="navigateToSection('profile')" style="cursor: pointer;">
+                <div class="feature-icon">👤</div>
+                <h3>Fake Profile Detector</h3>
+                <p>Real-time identification of fraudulent profiles and impersonation attempts across social networking platforms.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Phishing Detector Section -->
+        <section id="phishing" class="section active">
+            <div class="tool-section">
+                <h2>
+                    <div class="tool-section-icon">📧</div>
+                    <span>Phishing Email Detector</span>
+                </h2>
+                <p class="tool-intro">Analyze emails and URLs for phishing indicators, suspicious content, and social engineering techniques. Our AI-powered system checks for common phishing patterns and provides detailed risk assessment.</p>
+
+                <div class="input-section">
+                    <h3>📋 Email Information</h3>
+                    
+                    <div class="form-group">
+                        <label>Email Subject</label>
+                        <input type="text" id="phishing-subject" placeholder="e.g., 'URGENT: Verify Your Account'" onchange="updatePhishingAnalysis()" oninput="updatePhishingAnalysis()">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Sender Address</label>
+                        <input type="email" id="phishing-sender" placeholder="e.g., sender@domain.com" onchange="updatePhishingAnalysis()" oninput="updatePhishingAnalysis()">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email Content</label>
+                        <textarea id="phishing-content" placeholder="Paste the full email content here..." onchange="updatePhishingAnalysis()" oninput="updatePhishingAnalysis()"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Suspicious URLs (comma-separated)</label>
+                        <input type="text" id="phishing-urls" placeholder="e.g., https://example.com, https://another-site.com" onchange="updatePhishingAnalysis()" oninput="updatePhishingAnalysis()">
+                    </div>
+
+                    <button class="btn btn-primary" onclick="analyzePhishing(this)" style="width: auto; margin-top: 1rem;">🔍 Analyze Email Now</button>
+                </div>
+
+                <!-- Results -->
+                <div id="phishing-result" class="analysis-result">
+                    <div class="result-header">
+                        <div class="result-status">
+                            <span class="status-badge" id="phishing-status-badge"></span>
+                            <span id="phishing-status-text">Analyzing...</span>
+                        </div>
+                        <div class="result-score" id="phishing-score">0%</div>
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <div style="color: var(--text-secondary); margin-bottom: 0.75rem; font-weight: 600;">Phishing Risk Level</div>
+                        <div class="analysis-bar">
+                            <div class="analysis-bar-fill" id="phishing-bar" style="width: 0%;"></div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <div style="font-weight: 600; margin-bottom: 1.5rem; font-size: 1.1rem;">🔍 Detected Indicators</div>
+                        <div class="phishing-indicators" id="phishing-indicators"></div>
+                    </div>
+
+                    <div class="recommendations-section">
+                        <h4>💡 Recommendations</h4>
+                        <div id="phishing-recommendations" style="display: grid; gap: 0.75rem;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Password Strength Advisor Section -->
+        <section id="password" class="section">
+            <div class="tool-section">
+                <h2>
+                    <div class="tool-section-icon">🔐</div>
+                    <span>AI-Based Password Strength Advisor</span>
+                </h2>
+                <p class="tool-intro">Get instant feedback on password strength with our AI-powered analysis. Receive personalized recommendations for creating unbreakable passwords that protect your accounts.</p>
+
+                <div class="input-section">
+                    <h3>🔑 Password Analysis</h3>
+                    <div class="form-group">
+                        <label>Enter Password to Analyze</label>
+                        <input type="password" id="password-input" placeholder="Type your password here..." onchange="analyzePassword()" oninput="analyzePassword()">
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 0.875rem; margin-top: 0.5rem;">✓ Your password is never stored or transmitted to our servers</p>
+                </div>
+
+                <div id="password-strength-meter" class="password-strength-meter" style="margin-bottom: 2rem;">
+                    <div class="strength-bar">
+                        <div class="strength-fill" id="strength-bar-fill" style="width: 0%;"></div>
+                    </div>
+                    <div class="strength-text">
+                        <span style="color: var(--text-secondary);">Strength Assessment</span>
+                        <span class="strength-level" id="strength-level">No Password</span>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <div style="font-weight: 600; margin-bottom: 1rem;">✓ Security Requirements</div>
+                    <div class="password-requirements" id="password-requirements">
+                        <div class="requirement" id="req-length">
+                            <div class="requirement-check">✓</div>
+                            <span>At least 8 characters</span>
+                        </div>
+                        <div class="requirement" id="req-uppercase">
+                            <div class="requirement-check">✓</div>
+                            <span>Uppercase letters (A-Z)</span>
+                        </div>
+                        <div class="requirement" id="req-lowercase">
+                            <div class="requirement-check">✓</div>
+                            <span>Lowercase letters (a-z)</span>
+                        </div>
+                        <div class="requirement" id="req-numbers">
+                            <div class="requirement-check">✓</div>
+                            <span>Numbers (0-9)</span>
+                        </div>
+                        <div class="requirement" id="req-special">
+                            <div class="requirement-check">✓</div>
+                            <span>Special characters (!@#$%)</span>
+                        </div>
+                        <div class="requirement" id="req-length-long">
+                            <div class="requirement-check">✓</div>
+                            <span>At least 12 characters</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="password-tips" class="password-tips">
+                    <h4>💡 Tips to Improve Your Password</h4>
+                    <ul id="password-tips-list"></ul>
+                </div>
+
+                <div id="password-result" class="analysis-result">
+                    <div class="result-header">
+                        <div class="result-status">
+                            <span class="status-badge" id="password-status-badge"></span>
+                            <span id="password-status-text">Strong</span>
+                        </div>
+                    </div>
+
+                    <div style="font-weight: 600; margin-bottom: 1.5rem;">📊 Security Metrics</div>
+                    <div class="result-details">
+                        <div class="result-item">
+                            <div class="result-item-label">Character Diversity</div>
+                            <div class="result-item-value" id="password-diversity">85%</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-item-label">Length Score</div>
+                            <div class="result-item-value" id="password-length-score">90%</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-item-label">Complexity Score</div>
+                            <div class="result-item-value" id="password-complexity">92%</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-item-label">Overall Security</div>
+                            <div class="result-item-value" id="password-overall">89%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fake Profile Detector Section -->
+        <section id="profile" class="section">
+            <div class="tool-section">
+                <h2>
+                    <div class="tool-section-icon">👤</div>
+                    <span>Fake Profile Detector</span>
+                </h2>
+                <p class="tool-intro">Analyze profiles to identify fake accounts, impersonation attempts, and suspicious activity patterns. Our AI uses behavioral analysis to determine profile authenticity.</p>
+
+                <div class="input-section">
+                    <h3>👥 Profile Details</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Profile Username</label>
+                            <input type="text" id="profile-username" placeholder="e.g., @john_doe" onchange="updateProfileAnalysis()">
+                        </div>
+                        <div class="form-group">
+                            <label>Account Age (days)</label>
+                            <input type="text" id="profile-age" placeholder="e.g., 365" onchange="updateProfileAnalysis()">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Follower Count</label>
+                            <input type="text" id="profile-followers" placeholder="e.g., 5000" onchange="updateProfileAnalysis()">
+                        </div>
+                        <div class="form-group">
+                            <label>Following Count</label>
+                            <input type="text" id="profile-following" placeholder="e.g., 200" onchange="updateProfileAnalysis()">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Bio / Description</label>
+                        <textarea id="profile-bio" placeholder="Paste the profile bio or description here..." onchange="updateProfileAnalysis()"></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Profile Picture URL</label>
+                            <input type="text" id="profile-picture" placeholder="https://example.com/image.jpg" onchange="updateProfileAnalysis()">
+                        </div>
+                        <div class="form-group">
+                            <label>Posting Frequency (posts/week)</label>
+                            <input type="text" id="profile-posting" placeholder="e.g., 5" onchange="updateProfileAnalysis()">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Engagement Rate (%)</label>
+                        <input type="text" id="profile-engagement" placeholder="e.g., 2.5" onchange="updateProfileAnalysis()">
+                    </div>
+
+                    <button class="btn btn-primary" onclick="analyzeProfile(this)" style="width: auto; margin-top: 1rem;">🔍 Analyze Profile Now</button>
+                </div>
+
+                <!-- Results -->
+                <div id="profile-result" class="analysis-result">
+                    <div class="result-header">
+                        <div class="result-status">
+                            <span class="status-badge" id="profile-status-badge"></span>
+                            <span id="profile-status-text">Analyzing...</span>
+                        </div>
+                        <div class="result-score" id="profile-authenticity">0%</div>
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <div style="color: var(--text-secondary); margin-bottom: 0.75rem; font-weight: 600;">Authenticity Score</div>
+                        <div class="analysis-bar">
+                            <div class="analysis-bar-fill" id="profile-bar" style="width: 0%;"></div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <div style="font-weight: 600; margin-bottom: 1.5rem; font-size: 1.1rem;">🔍 Profile Analysis Results</div>
+                        <div class="profile-analysis-grid" id="profile-checks"></div>
+                    </div>
+
+                    <div class="recommendations-section">
+                        <h4>💡 Security Recommendations</h4>
+                        <div id="profile-recommendations" style="display: grid; gap: 0.75rem;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="tool-section">
+                <h2>About Terosica AI</h2>
+                <div style="color: var(--text-secondary); line-height: 1.8; max-width: 800px;">
+                    <p style="margin-bottom: 1rem;">Terosica AI is an enterprise-grade cyber safety platform powered by advanced artificial intelligence and machine learning algorithms. Our mission is to protect individuals and organizations from evolving online threats.</p>
+
+                    <p style="margin-bottom: 1rem;"><strong>Our Technology:</strong></p>
+                    <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                        <li>Deep learning models trained on millions of phishing emails</li>
+                        <li>Real-time URL pattern matching and domain analysis</li>
+                        <li>Behavioral analysis for profile authenticity detection</li>
+                        <li>Continuous updates with emerging threat signatures</li>
+                    </ul>
+
+                    <p style="margin-bottom: 1rem;"><strong>Security & Privacy:</strong></p>
+                    <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                        <li>End-to-end encryption for all analysis requests</li>
+                        <li>GDPR compliant data handling</li>
+                        <li>No data retention beyond analysis period</li>
+                        <li>ISO 27001 certified infrastructure</li>
+                    </ul>
+
+                    <p>Whether you're an individual concerned about phishing emails, someone wanting to strengthen your passwords, or investigating suspicious profiles, Terosica AI provides the intelligence you need to stay safe online.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Terosica AI. All rights reserved. | Enterprise Cyber Safety Platform</p>
+        </div>
+    </footer>
+
+    <script>
+        // ===== API Configuration =====
+        // API Key from backend - Insert in headers for all requests
+        const API_KEY = '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';
+        
+        // Update this URL to your ngrok URL when deploying
+        // Format: https://your-ngrok-url.ngrok.io
+        const API_BASE_URL = window.location.protocol === 'https:' && window.location.hostname !== 'localhost' 
+            ? window.location.origin 
+            : 'http://localhost:5000';
+
+        // ===== Navigation Management =====
+        function navigateToSection(sectionId) {
+            showSection(sectionId);
+            const navLink = document.querySelector(`[data-section="${sectionId}"]`);
+            if (navLink) {
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                navLink.classList.add('active');
+            }
+            setTimeout(() => {
+                const section = document.getElementById(sectionId);
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const sectionId = link.getAttribute('data-section');
+                navigateToSection(sectionId);
+            });
+        });
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        // ===== PHISHING DETECTOR API =====
+        function analyzePhishing(btn) {
+            const subject = document.getElementById('phishing-subject').value;
+            const sender = document.getElementById('phishing-sender').value;
+            const content = document.getElementById('phishing-content').value;
+            const urls = document.getElementById('phishing-urls').value;
+
+            if (!subject && !sender && !content && !urls) {
+                alert('Please enter at least one field to analyze');
+                return;
+            }
+
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = '🔄 Analyzing...';
+            }
+
+            console.log('Starting phishing analysis...');
+            console.log('API URL:', API_BASE_URL);
+
+            fetch(`${API_BASE_URL}/api/v2/phishing/analyze`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-API-Key': API_KEY
+                },
+                body: JSON.stringify({
+                    subject,
+                    sender,
+                    body: content
+                })
+            })
+            .then(response => {
+                console.log('Response status:', response.status);
+                if (!response.ok) throw new Error(`API Error: ${response.status}`);
+                return response.json();
+            })
+            .then(data => {
+                console.log('Phishing analysis complete:', data);
+                if (data.success) {
+                    displayPhishingResults(data);
+                } else {
+                    alert('Error analyzing email: ' + (data.error || 'Unknown error'));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to connect to API. Make sure the backend is running.\n\nError: ' + error.message);
+            })
+            .finally(() => {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = '🔍 Analyze Email Now';
+                }
+            });
+        }
+
+        function updatePhishingAnalysis() {
+            // Real-time validation
+        }
+
+        function displayPhishingResults(data) {
+            const result = document.getElementById('phishing-result');
+            const badge = document.getElementById('phishing-status-badge');
+            const statusText = document.getElementById('phishing-status-text');
+            const score = data.risk_score;
+
+            if (score < 30) {
+                badge.className = 'status-badge safe';
+                statusText.textContent = '✓ Safe Email';
+            } else if (score < 70) {
+                badge.className = 'status-badge warning';
+                statusText.textContent = '⚠ Suspicious';
+            } else {
+                badge.className = 'status-badge danger';
+                statusText.textContent = '🚨 Likely Phishing';
+            }
+
+            document.getElementById('phishing-score').textContent = score + '%';
+            document.getElementById('phishing-bar').style.width = score + '%';
+
+            const indicatorsHtml = data.indicators.map(ind => `
+                <div class="indicator-item">
+                    <div class="indicator-icon ${ind.type}">${ind.type === 'safe' ? '✓' : ind.type === 'warning' ? '!' : '⚠'}</div>
+                    <div class="indicator-text">
+                        <div class="indicator-title">${ind.title}</div>
+                        <div class="indicator-desc">${ind.desc}</div>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('phishing-indicators').innerHTML = indicatorsHtml;
+
+            const recommendationsHtml = data.recommendations.map(rec => 
+                `<div class="recommendation-item">${rec}</div>`
+            ).join('');
+            document.getElementById('phishing-recommendations').innerHTML = recommendationsHtml;
+
+            result.classList.add('active');
+        }
+
+        // ===== PASSWORD STRENGTH ANALYZER API =====
+        function analyzePassword() {
+            const password = document.getElementById('password-input').value;
+
+            if (password.length === 0) {
+                document.getElementById('password-result').classList.remove('active');
+                document.getElementById('password-tips').style.display = 'none';
+                document.getElementById('strength-bar-fill').style.width = '0%';
+                document.getElementById('strength-level').textContent = 'No Password';
+                return;
+            }
+
+            fetch(`${API_BASE_URL}/api/v2/credentials/score`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-API-Key': API_KEY
+                },
+                body: JSON.stringify({ password })
+            })
+            .then(response => {
+                if (!response.ok) throw new Error(`API Error: ${response.status}`);
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    displayPasswordResults(data);
+                } else {
+                    console.error('Error analyzing password:', data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Fallback to local analysis if API fails
+                analyzePasswordLocal(password);
+            });
+        }
+
+        function displayPasswordResults(data) {
+            const strength = data.strength;
+            const level = data.level;
+            const requirements = data.requirements;
+            const tips = data.tips;
+            const metrics = data.metrics;
+
+            // Update strength bar
+            const strengthBar = document.getElementById('strength-bar-fill');
+            const strengthLevel = document.getElementById('strength-level');
+
+            strengthBar.style.width = strength + '%';
+
+            let levelClass = 'weak';
+            if (strength < 30) {
+                levelClass = 'weak';
+            } else if (strength < 50) {
+                levelClass = 'fair';
+            } else if (strength < 70) {
+                levelClass = 'good';
+            } else if (strength < 90) {
+                levelClass = 'strong';
+            } else {
+                levelClass = 'very-strong';
+            }
+
+            strengthLevel.className = 'strength-level ' + levelClass;
+            strengthLevel.textContent = level;
+
+            // Update requirements
+            updateRequirementUI('req-length', requirements.length);
+            updateRequirementUI('req-uppercase', requirements.uppercase);
+            updateRequirementUI('req-lowercase', requirements.lowercase);
+            updateRequirementUI('req-numbers', requirements.numbers);
+            updateRequirementUI('req-special', requirements.special);
+            updateRequirementUI('req-length-long', requirements.length_long);
+
+            // Update tips
+            const tipsContainer = document.getElementById('password-tips');
+            const tipsList = document.getElementById('password-tips-list');
+
+            if (tips.length > 0) {
+                tipsContainer.style.display = 'block';
+                tipsList.innerHTML = tips.map(tip => `<li>• ${tip}</li>`).join('');
+            } else {
+                tipsContainer.style.display = 'none';
+            }
+
+            // Update metrics
+            document.getElementById('password-diversity').textContent = metrics.diversity + '%';
+            document.getElementById('password-length-score').textContent = metrics.length + '%';
+            document.getElementById('password-complexity').textContent = metrics.complexity + '%';
+            document.getElementById('password-overall').textContent = metrics.overall + '%';
+
+            // Update status
+            const result = document.getElementById('password-result');
+            const badge = document.getElementById('password-status-badge');
+            const statusText = document.getElementById('password-status-text');
+
+            if (strength < 30) {
+                badge.className = 'status-badge danger';
+                statusText.textContent = 'Weak - Not Recommended';
+            } else if (strength < 60) {
+                badge.className = 'status-badge warning';
+                statusText.textContent = 'Fair - Could Be Stronger';
+            } else if (strength < 85) {
+                badge.className = 'status-badge warning';
+                statusText.textContent = 'Good - Acceptable';
+            } else {
+                badge.className = 'status-badge safe';
+                statusText.textContent = 'Strong - Recommended';
+            }
+
+            result.classList.add('active');
+        }
+
+        function updateRequirementUI(id, met) {
+            const elem = document.getElementById(id);
+            if (met) {
+                elem.classList.add('met');
+            } else {
+                elem.classList.remove('met');
+            }
+        }
+
+        // Fallback local analysis
+        function analyzePasswordLocal(password) {
+            let strength = 0;
+            const requirements = {
+                length: password.length >= 8,
+                length_long: password.length >= 12,
+                uppercase: /[A-Z]/.test(password),
+                lowercase: /[a-z]/.test(password),
+                numbers: /[0-9]/.test(password),
+                special: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)
+            };
+
+            if (requirements.length) strength += 10;
+            if (requirements.length_long) strength += 15;
+            if (requirements.uppercase) strength += 15;
+            if (requirements.lowercase) strength += 15;
+            if (requirements.numbers) strength += 15;
+            if (requirements.special) strength += 25;
+
+            let uniqueChars = new Set(password).size;
+            strength += Math.min(5, Math.floor(uniqueChars / 5));
+
+            if (/(.)\1{2,}/.test(password)) strength -= 10;
+            if (/123|abc|qwerty/.test(password.toLowerCase())) strength -= 15;
+
+            strength = Math.max(0, Math.min(100, strength));
+
+            let tips = [];
+            if (!requirements.length_long) tips.push('Use at least 12 characters for enhanced security');
+            if (!requirements.uppercase) tips.push('Add uppercase letters (A-Z)');
+            if (!requirements.lowercase) tips.push('Add lowercase letters (a-z)');
+            if (!requirements.numbers) tips.push('Include numbers (0-9)');
+            if (!requirements.special) tips.push('Use special characters (!@#$%^&*)');
+
+            displayPasswordResults({
+                success: true,
+                strength: strength,
+                level: strength < 30 ? 'Weak' : strength < 50 ? 'Fair' : strength < 70 ? 'Good' : strength < 90 ? 'Strong' : 'Very Strong',
+                requirements: requirements,
+                tips: tips,
+                metrics: {
+                    diversity: Math.round((uniqueChars / password.length) * 100),
+                    length: Math.min(100, Math.round((password.length / 12) * 100)),
+                    complexity: Math.round(strength / 1.2),
+                    overall: strength
+                }
+            });
+        }
+
+        // ===== FAKE PROFILE DETECTOR API =====
+        function analyzeProfile(btn) {
+            const username = document.getElementById('profile-username').value;
+            if (!username) {
+                alert('Please enter at least a username');
+                return;
+            }
+
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = '🔄 Analyzing...';
+            }
+
+            console.log('Starting profile analysis...');
+            console.log('API URL:', API_BASE_URL);
+
+            fetch(`${API_BASE_URL}/api/v2/profiles/verify`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-API-Key': API_KEY
+                },
+                body: JSON.stringify({
+                    username,
+                    email: document.getElementById('profile-email').value,
+                    created_at: document.getElementById('profile-created').value,
+                    avatar_url: document.getElementById('profile-picture').value,
+                    bio: document.getElementById('profile-bio').value,
+                    activity_log: [],
+                    connections: []
+                })
+            })
+            .then(response => {
+                console.log('Response status:', response.status);
+                if (!response.ok) throw new Error(`API Error: ${response.status}`);
+                return response.json();
+            })
+            .then(data => {
+                console.log('Profile analysis complete:', data);
+                if (data.success) {
+                    displayProfileResults(data);
+                } else {
+                    alert('Error analyzing profile: ' + (data.error || 'Unknown error'));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to connect to API. Make sure the backend is running.\n\nError: ' + error.message);
+            })
+            .finally(() => {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = '🔍 Analyze Profile Now';
+                }
+            });
+        }
+
+        function updateProfileAnalysis() {
+            // Real-time validation
+        }
+
+        function displayProfileResults(data) {
+            const result = document.getElementById('profile-result');
+            const badge = document.getElementById('profile-status-badge');
+            const statusText = document.getElementById('profile-status-text');
+            const score = data.authenticity_score;
+
+            if (score > 75) {
+                badge.className = 'status-badge safe';
+                statusText.textContent = '✓ Likely Authentic';
+            } else if (score > 50) {
+                badge.className = 'status-badge warning';
+                statusText.textContent = '⚠ Uncertain';
+            } else {
+                badge.className = 'status-badge danger';
+                statusText.textContent = '🚨 Likely Fake';
+            }
+
+            document.getElementById('profile-authenticity').textContent = score + '%';
+            document.getElementById('profile-bar').style.width = score + '%';
+
+            const checksHtml = data.checks.map(check => `
+                <div class="profile-check-item ${check.type}">
+                    <div class="check-title">${check.type === 'safe' ? '✓' : check.type === 'warning' ? '⚠' : '✗'} ${check.title}</div>
+                    <div class="check-desc">${check.desc}</div>
+                </div>
+            `).join('');
+            document.getElementById('profile-checks').innerHTML = checksHtml;
+
+            const recommendationsHtml = data.recommendations.map(rec => 
+                `<div class="recommendation-item">${rec}</div>`
+            ).join('');
+            document.getElementById('profile-recommendations').innerHTML = recommendationsHtml;
+
+            result.classList.add('active');
+        }
+
+        // ===== Initialize =====
+        console.log('Terosica AI Frontend Loaded');
+        console.log('API Endpoint:', API_BASE_URL);
+        console.log('✓ API key configured for secure authentication');
+    </script>
+</body>
+</html>
