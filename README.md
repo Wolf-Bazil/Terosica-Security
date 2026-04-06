@@ -276,7 +276,7 @@ pip install -r requirements.txt --force-reinstall
 
 ## 📝 License
 
-MIT License - See LICENSE file for details
+Apache 2.0 License - See LICENSE file for details
 
 ## 🤝 Contributing
 
@@ -290,7 +290,7 @@ Development guidelines:
 
 - Documentation: See inline docstrings
 - Issues: Check GitHub issues
-- Email: support@terosica.ai
+- Email: mondas23990@gmail.com
 
 ---
 
@@ -703,13 +703,13 @@ print(f"Level: {result['level']}")
 
 ## 📜 License
 
-MIT License - Use freely for personal/commercial projects
+Apache 2.0 License - Use freely for personal/commercial projects
 
 ---
 
 ## 🌟 Credits
 
-**SafeGuard AI v1.0.0** - Enterprise Cyber Safety Platform  
+**Terosica AI v1.0.0** - Enterprise Cyber Safety Platform  
 Built with security, simplicity, and style.  
 *"Protecting the digital world, one email at a time."*
 
@@ -728,5 +728,5 @@ Built with security, simplicity, and style.
 ---
 
 **Last Updated:** April 1, 2026  
-**Maintained By:** SafeGuard AI Team  
-**Status:** Active Development
+**Maintained By:** Terosica AI Team  
+**Status:** API Key Deactivated
