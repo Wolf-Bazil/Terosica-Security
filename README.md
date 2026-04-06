@@ -74,13 +74,6 @@ file:///d:/Python/cyber-safety/index.html
 
 ---
 
-## 📖 Complete Documentation
-
-- **[API_DOCUMENTATION.md](API_DOCUMENTATION.md)** - Full API endpoint reference
-- **[ARCHITECTURE.md](ARCHITECTURE.md)** - System architecture & design patterns
-- **[DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)** - Deployment instructions
-- **[.env.example](.env.example)** - Environment configuration template
-
 ## 🔧 Backend Modules
 
 ### Core Modules
