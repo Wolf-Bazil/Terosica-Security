@@ -99,7 +99,7 @@ file:///d:/Python/cyber-safety/index.html
 
 ## 🔐 Security & API Key
 
-**API Key:** `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`
+**API Key:** REMOVED
 
 All API requests require the key in the `X-API-Key` header:
 ```bash
