@@ -52,26 +52,31 @@ Terosica AI is a next-generation, enterprise-level security intelligence platfor
 
 ### Installation
 
-1. **Clone/Download the project:**
+### Option 1: Clone using Git (Recommended)
 ```bash
-cd d:\Python\cyber-safety
+git clone https://github.com/Wolf-Bazil/Terosica-Security.git
+cd Terosica-Security/cyber-safety
 ```
 
-2. **Install dependencies:**
+### Option 2: Download as ZIP
+1. Visit: [https://github.com/Wolf-Bazil/Terosica-Security](https://github.com/Wolf-Bazil/Terosica-Security)
+2. Click the **Code** button (green button)
+3. Select **Download ZIP**
+4. Extract the downloaded `Terosica-Security-main.zip` file
+5. Navigate to the `cyber-safety` folder
+
+### Option 3: Download Specific Folder Only
+Using command line tools:
 ```bash
-pip install -r requirements.txt
-```
+# Using SVN (if available)
+svn checkout https://github.com/Wolf-Bazil/Terosica-Security/trunk/cyber-safety
 
-3. **Start the backend:**
-   - **Windows:** Double-click `run.bat`
-   - **PowerShell:** `.\run.ps1`
-   - **Manual:** `python backend.py`
-
-4. **Open the frontend:**
+# Or using Git (sparse checkout)
+git clone --depth 1 https://github.com/Wolf-Bazil/Terosica-Security.git
+cd Terosica-Security
+git sparse-checkout init --cone
+git sparse-checkout set cyber-safety
 ```
-file:///d:/Python/cyber-safety/index.html
-```
-
 ---
 
 ## 🔧 Backend Modules
